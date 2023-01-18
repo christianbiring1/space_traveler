@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import Navbar from './components/Navbar';
+import fetchRockets from './api/rocketApiCall';
+import { getRockets } from './redux/rockets/rockets';
+import fetchDragons from './api/dragonAPI';
+import { dragonAction } from './redux/dragons/dragon';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function data() {
+      const rockets = await fetchRockets();
+      dispatch(getRockets(rockets));
+    }
+    data();
+  }, []);
+
+  useEffect(() => {
+    async function data() {
+      const dragons = await fetchDragons();
+      dispatch(dragonAction(dragons));
+    }
+    data();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
     </div>
   );
 }
