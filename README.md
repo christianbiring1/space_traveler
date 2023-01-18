@@ -11,9 +11,7 @@ In this project, I have worked with the real live data from the SpaceX API to bu
 
 ## Live Demo
 
-You can check the live demo :
-
-Not yet available
+You can check the live demo : [here](https://fancy-elf-c0882d.netlify.app)
 
 ### Prerequisites
 
